@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><title>Phone Preview</title><style>body{margin:0;background:#EFE8DE;font-family:sans-serif;}a{color:#9A5A2A;}a:hover{color:#6B3E12;}</style></helmet>
+<div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:20px;">
+  <div style="display:flex;gap:12px;align-items:center;">
+    <a href="index.html">← Back to site</a>
+    <select onChange="{{ onPage }}" style="height:36px;padding:0 10px;"><sc-for list="{{ pages }}" as="p" hint-placeholder-count="6"><option value="{{ p }}">{{ p }}</option></sc-for></select>
+  </div>
+  <div style="width:390px;height:844px;border:12px solid #1C1C1A;border-radius:44px;overflow:hidden;background:white;"><iframe src="{{ page }}" style="width:100%;height:100%;border:0;"></iframe></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: 'index.html' };
+  renderVals() {
+    return { page: this.state.page, pages: ['index.html','about.html','mission.html','team.html','gallery.html','services.html','programs.html','testimonials.html','get-involved.html','privacy.html','terms.html','ip.html'], onPage: e => this.setState({ page: e.target.value }) };
+  }
+}
+</script>
+</body>
+</html>
